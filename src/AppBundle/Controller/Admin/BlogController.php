@@ -28,6 +28,15 @@ class BlogController extends Controller
             'posts' => $pagination
         ));
     }
+    public function deleteAction(Request $request, Post $id){
+        if (!$id) {
+            throw $this->createNotFoundException('No post found');
+        }
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($id);
+        $em->flush();
+        return $this->redirectToRoute('_admin_vire');
+    }
 
 }
 ?>

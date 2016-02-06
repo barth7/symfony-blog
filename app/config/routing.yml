@@ -14,6 +14,10 @@ _admin_index_paginated:
     path:   /admin/page={page}
     defaults: { _controller: AppBundle:Admin/Blog:admin, page: 1 }
 
+_admin_delete_post:
+    path:   /admin/delete={id}
+    defaults: { _controller: AppBundle:Admin/Blog:delete, id: 1 }
+
 _login_route:
     path:  /login
     defaults: { _controller: AppBundle:Security:login}
