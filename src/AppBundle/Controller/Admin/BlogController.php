@@ -4,7 +4,9 @@ namespace AppBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Post;
 
 class BlogController extends Controller
@@ -37,6 +39,32 @@ class BlogController extends Controller
         $em->remove($id);
         $em->flush();
         return $this->redirectToRoute('_admin_vire');
+    }
+    public function newPostAction(Request $request){
+        $NewPost = new Post();
+
+        $form = $this->createFormBuilder($NewPost)
+            ->add('title', TextType::class)
+            ->add('content', TextType::class)
+            ->add('author', TextType::class)
+            ->add('save', SubmitType::class, array('label' => 'Create New Post'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $NewPost->setSlug(preg_replace(
+                '/[^a-z0-9]/', '-', strtolower(trim(strip_tags($NewPost->getTitle())))));
+            var_dump($data);
+            $this->get('app.newpost')->newPost($data);
+
+            return $this->redirectToRoute('_admin_vire');
+        }
+
+        return $this->render('blog/newPost.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
 }
