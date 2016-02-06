@@ -3,7 +3,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Post
 {
@@ -13,7 +13,12 @@ class Post
     private $title;
 
     private $slug;
-
+    /**
+     * @Assert\Length(
+     *      min = 100,
+     *      minMessage = "Your Post must be at least {{ limit }} characters long",
+     * )
+     */
     private $content;
 
     private $author;
