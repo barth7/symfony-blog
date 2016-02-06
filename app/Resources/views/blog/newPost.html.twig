@@ -1,47 +1,93 @@
-{% extends 'base.html.twig' %} {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1>Welcome to Symfony</h1>
+{% extends 'base.html.twig' %}
+{% block login %}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <div class="col-sm-12 login">
+            <a class="link admin" href="{{ path('_welcome') }}">Home</a> |
+            <a class="link admin" href="{{ path('_admin_vire') }}">Admin</a> |
+            <a class="link admin active" href="{{ path('_admin_add_post') }}">Add Post</a> |
+            <a class="link admin" href="{{ path('_logout') }}">Logout</a>
+        </div>
+    {% else %}
+        <div class="col-sm-12 login"><a class="link" href="{{ path('_login_route') }}">Login</a></div>
+    {% endif %}
+{% endblock %}
+{% block body %}
+    <div class="wrapper">
+            <div style="text-align: center;">
+                <span class="headline_new_post">Add New Post!</span>
             </div>
+        <hr>
             <div id="Posts">
                 {{ form_start(form) }}
-                {{ form_widget(form) }}
+                {{ form_label(form.title, null, {
+                    'label': 'Title',
+                    'label_attr': {'class': 'foo'}
+                }) }}
+                {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.content, null, {
+                    'label': 'Post',
+                    'label_attr': {'class': 'foo'}
+                }) }}
+                {{ form_widget(form.content, {'attr': {'class': 'form-control post_content','rows':'3'}}) }}
+                {{ form_label(form.author, null, {
+                    'label': 'Author',
+                    'label_attr': {'class': 'foo'}
+                }) }}
+                {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
                 {{ form_end(form) }}
             </div>
 
-        </div>
     </div>
 {% endblock %} {% block stylesheets %}
     <style>
         body {
             background: #F5F5F5;
             font: 18px/1.5 sans-serif;
+
         }
 
-        .title {
+        .post_content{
+            height: auto!important;
+        }
+        .headline_new_post {
+           font-size:25px;
+        }
+        input[type="text"] {
+            margin-bottom: 10px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+
+        }
+        .admin{
+            padding-left:15px;
+            padding-right: 15px;
+        }
+        .error {
             text-align: center;
-            font-size: 35px;
-            line-height: 250%;
+            max-width: 380px;
+            margin: 0 auto;
+
+        }
+        .error > p {
+            margin-bottom: 0!important;
+        }
+        input[type="password"] {
+            margin-bottom: 20px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        .wrapper {
+            margin:200px auto;
+            width:800px;
         }
 
-        .line {
-            display: block;
-            width: 110%;
-            border-color: #ccc;
-        ;
-            border-bottom-style: inset;
+        .login{
+            text-align: right;
         }
-
-        .post_conent {
-            text-align: left;
+        a.link, a:hover.link, a:active.link{
+            color:#fff!important;
+            text-decoration: none;
         }
-
-        .info {
-            color: #ccc;
-            font-size: 12;
-        }
-
         h1,
         h2 {
             line-height: 1.2;
@@ -57,15 +103,15 @@
             margin-bottom: 1em;
         }
 
-        p {
-            margin: 0 0 1em 0;
+        .active{
+            text-decoration: underline!important;
         }
-
-        a {
-            color: #0000F0;
+        a.link, a:hover.link, a:active.link{
+            color:#fff!important;
+            text-decoration: none;
         }
-
-        a:hover {
+        a.goBack, a:hover.goBack, a:active.goBack{
+            color:#455A64!important;
             text-decoration: none;
         }
 
@@ -76,50 +122,11 @@
             word-wrap: break-word;
         }
 
-        #wrapper {
-            background: #FFF;
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-        }
 
-        #container {
-            padding: 2em;
-        }
 
-        #welcome,
-        #status {
-            margin-bottom: 2em;
-            text-align: center;
-        }
-
-        #welcome h1 span {
-            display: block;
-            font-size: 75%;
-        ;
-        }
-
-        #icon-status,
-        #icon-book {
-            float: left;
-            height: 64px;
-            margin-right: 1em;
-            margin-top: -4px;
-            width: 64px;
-        }
-
-        #icon-book {
-            display: none;
-        }
 
         @media (min-width: 768px) {
-            #wrapper {
-                width: 80%;
-                margin: 2em auto;
-            }
-            #icon-book {
-                display: inline-block;
-            }
+
             #status a,
             #next a {
                 display: block;
@@ -140,11 +147,7 @@
                     opacity: 1;
                 }
             }
-            .sf-toolbar {
-                opacity: 0;
-                -webkit-animation: fade-in 1s .2s forwards;
-                animation: fade-in 1s .2s forwards;
-            }
+
         }
     </style>
 {% endblock %}

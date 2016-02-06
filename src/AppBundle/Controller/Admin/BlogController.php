@@ -3,9 +3,10 @@
 namespace AppBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Post;
 
@@ -45,7 +46,7 @@ class BlogController extends Controller
 
         $form = $this->createFormBuilder($NewPost)
             ->add('title', TextType::class)
-            ->add('content', TextType::class)
+            ->add('content', TextareaType::class)
             ->add('author', TextType::class)
             ->add('save', SubmitType::class, array('label' => 'Create New Post'))
             ->getForm();
@@ -59,7 +60,7 @@ class BlogController extends Controller
             var_dump($data);
             $this->get('app.newpost')->newPost($data);
 
-            return $this->redirectToRoute('_admin_vire');
+            return $this->redirectToRoute('_welcome');
         }
 
         return $this->render('blog/newPost.html.twig', array(
