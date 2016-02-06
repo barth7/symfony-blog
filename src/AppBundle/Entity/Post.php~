@@ -1,0 +1,35 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+
+class Post
+{
+    const POST_NUM = 10;
+
+    private $id;
+
+    private $title;
+
+    private $slug;
+
+    private $content;
+
+    private $author;
+
+    private $createdDate;
+
+
+    private $comments;
+
+    public function __construct()
+    {
+        $this->createdDate = new \DateTime();
+        $this->comments = new ArrayCollection();
+    }
+
+
+}
+?>

@@ -1,0 +1,24 @@
+AppBundle\Entity\Post:
+    type: entity
+    table: post
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        title:
+            type: string
+            length: 256
+        slug:
+             type: string
+             length: 256
+        content:
+             type: text
+        author:
+             type: string
+             length: 256
+        createdDate:
+             type: datetime
+        comments:
+             type: text
+        

@@ -1,0 +1,11 @@
+_welcome:
+    path:      /
+    defaults:  { _controller: AppBundle:Blog:index, page: 1 }
+
+_blog_index_paginated:
+    path:   /page={page}
+    defaults: { _controller: AppBundle:Blog:index, page: 1 }
+    
+_admin_vire:
+    path:   /admin
+    defaults: { _controller: AppBundle:Admin/Blog:admin, page: 1 }
