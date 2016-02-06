@@ -9,3 +9,18 @@ _blog_index_paginated:
 _admin_vire:
     path:   /admin
     defaults: { _controller: AppBundle:Admin/Blog:admin, page: 1 }
+
+_admin_index_paginated:
+    path:   /admin/page={page}
+    defaults: { _controller: AppBundle:Admin/Blog:admin, page: 1 }
+
+_login_route:
+    path:  /login
+    defaults: { _controller: AppBundle:Security:login}
+
+_login_check:
+    path:  /login_check
+    defaults: { _controller: AppBundle:Security:loginCheck}
+
+logout:
+    path: /logout

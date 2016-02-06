@@ -19,10 +19,10 @@ class BlogController extends Controller
                 FROM AppBundle:Post p
                 ORDER BY p.createdDate DESC
             ');
-       
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($query, $request->query->get('page', $page), 10);
-        $pagination->setUsedRoute('_blog_index_paginated');
+        $pagination->setUsedRoute('_admin_index_paginated');
         var_dump('admin!');
         return $this->render('blog/showPosts.html.twig', array(
             'posts' => $pagination
