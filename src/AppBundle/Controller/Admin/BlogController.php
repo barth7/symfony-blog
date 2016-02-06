@@ -25,7 +25,8 @@ class BlogController extends Controller
         $pagination->setUsedRoute('_admin_index_paginated');
         var_dump('admin!');
         return $this->render('blog/showPosts.html.twig', array(
-            'posts' => $pagination
+            'posts' => $pagination,
+            'delete_option' => true
         ));
     }
     public function deleteAction(Request $request, Post $id){

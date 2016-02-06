@@ -24,7 +24,8 @@ class BlogController extends Controller
         $pagination = $paginator->paginate($query, $request->query->get('page', $page), 10);
         $pagination->setUsedRoute('_blog_index_paginated');
         return $this->render('blog/showPosts.html.twig', array(
-            'posts' => $pagination
+            'posts' => $pagination,
+            'delete_option' => false
         ));
     }
 

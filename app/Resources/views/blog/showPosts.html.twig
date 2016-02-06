@@ -19,7 +19,9 @@
                 {% for item in posts %}
                 <tr class="title">
                     <td>{{ item.title }}</td>
+                    {% if delete_option == true %}
                     <td><a href="{{ path('_admin_delete_post', {'id': item.id}) }}">Delete</a></td>
+                    {% endif %}
                 </tr>
                 <tr class="post_conent">
                     <td>{{ item.content }}</td>
