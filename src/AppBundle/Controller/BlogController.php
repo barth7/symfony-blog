@@ -28,6 +28,29 @@ class BlogController extends Controller
             'delete_option' => false
         ));
     }
+    public function findByTitleAction($slug){
+        $posts = $this->getDoctrine()->getEntityManager();
+        $query = $posts->createQuery('
+                SELECT p
+                FROM AppBundle:Post p
+                WHERE p.slug = :slug
+            ');
+        $query->setParameters(array(
+            'slug' => $slug,
+        ));
+        $Post = $query->getResult();
+
+
+        if(!empty($Post)){
+            return $this->render('blog/showPost.html.twig', array(
+                'post' => $Post[0],
+                'delete_option' => false
+            ));
+        }else{
+            return $this->redirectToRoute('_welcome');
+        }
+
+    }
 
 }
 ?>

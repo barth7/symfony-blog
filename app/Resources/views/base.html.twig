@@ -7,9 +7,9 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     </head>
-    <body>
-    <div class="row" style="background-color:#455A64; color:#fff;display:block;height:auto; padding:10px 20px 10px 20px; position: fixed; right:0; left:0;top:0; z-index:999">
-        <div class="col-sm-6" style="font-size:25px;">Symfony<strong>Blog</strong></div>
+    <body style="background-color: #C4E8F5">
+    <div class="row" style="background-color: rgb(119, 188, 222); color:#fff;display:block;height:auto; padding:10px 20px 10px 20px; position: fixed; right:0; left:0;top:0; z-index:999">
+        <div class="col-sm-6" style="font-size:25px;"><a class="link admin" href="{{ path('_welcome') }}">Symfony<strong>Blog</strong></a></div>
         <div class="col-sm-6" style="line-height: 33px;">{% block login %}{% endblock %}</div>
     </div>
         {% block body %}{% endblock %}

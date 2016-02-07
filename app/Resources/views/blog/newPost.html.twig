@@ -23,16 +23,19 @@
                     'label': 'Title',
                     'label_attr': {'class': 'foo'}
                 }) }}
+                {{ form_errors(form.title) }}
                 {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
                 {{ form_label(form.content, null, {
                     'label': 'Post',
                     'label_attr': {'class': 'foo'}
                 }) }}
+                {{ form_errors(form.content) }}
                 {{ form_widget(form.content, {'attr': {'class': 'form-control post_content','rows':'3'}}) }}
                 {{ form_label(form.author, null, {
                     'label': 'Author',
                     'label_attr': {'class': 'foo'}
                 }) }}
+                {{ form_errors(form.author) }}
                 {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
                 {{ form_end(form) }}
             </div>
@@ -84,7 +87,7 @@
         .login{
             text-align: right;
         }
-        a.link, a:hover.link, a:active.link{
+        a:link.link, a:hover.link, a:active.link, a:visited.link{
             color:#fff!important;
             text-decoration: none;
         }

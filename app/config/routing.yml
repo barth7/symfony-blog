@@ -5,6 +5,10 @@ _welcome:
 _blog_index_paginated:
     path:   /page={page}
     defaults: { _controller: AppBundle:Blog:index, page: 1 }
+
+_blog_single_post:
+    path:   /slug={slug}
+    defaults: { _controller: AppBundle:Blog:findByTitle, slug: 1 }
     
 _admin_vire:
     path:   /admin
@@ -17,6 +21,7 @@ _admin_index_paginated:
 _admin_delete_post:
     path:   /admin/delete={id}
     defaults: { _controller: AppBundle:Admin/Blog:delete, id: 1 }
+
 _admin_add_post:
      path:   /admin/new
      defaults: { _controller: AppBundle:Admin/Blog:newPost}

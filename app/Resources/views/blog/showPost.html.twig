@@ -1,0 +1,201 @@
+
+{% extends 'base.html.twig' %}
+{% block login %}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <div class="col-sm-12 login">
+            {% if app.request.get('_route')=='_welcome' %}
+                <a class="link admin active" href="{{ path('_welcome') }}">Home</a> |
+                <a class="link admin " href="{{ path('_admin_vire') }}">Admin</a> |
+            {% else %}
+                <a class="link admin" href="{{ path('_welcome') }}">Home</a> |
+                <a class="link admin active" href="{{ path('_admin_vire') }}">Admin</a> |
+            {% endif %}
+            <a class="link admin" href="{{ path('_admin_add_post') }}">Add Post</a> |
+            <a class="link admin" href="{{ path('_logout') }}">Logout</a>
+        </div>
+    {% else %}
+        <div class="col-sm-12 login"><a class="link" href="{{ path('_login_route') }}">Login</a></div>
+    {% endif %}
+{% endblock %}
+{% block body %}
+
+    <div id="wrapper">
+        <div id="container">
+            <div class="jumbotron text-center">
+                <h2>{{ post.title }}</h2>
+            </div>
+            {#<div class="row">#}
+            {#<div id="Posts" class="col-sm-12">#}
+            {#<table>#}
+            {#<tr>#}
+            {#<th>{{ knp_pagination_sortable(posts, 'Title', 'p.title') }}</th>#}
+            {#<th>{{ knp_pagination_sortable(posts, 'Content', 'p.content') }}</th>#}
+            {#<th>{{ knp_pagination_sortable(posts, 'Date', 'p.createdDate') }}</th>#}
+            {#</tr>#}
+            {#</table>#}
+            {#</div>#}
+            {#</div>#}
+            <div class="row">
+                <div id="Posts" class="col-sm-12">
+
+                    <table>
+                            <tr>
+                                <td class="title">{{ post.title }}</td>
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                    <td><a href="{{ path('_admin_delete_post', {'id': post.id}) }}" class="btn_del">Delete</a></td>
+                                {% endif %}
+                            </tr>
+                            <tr class="post_conent">
+                                <td>{{ post.content }}</td>
+                            </tr>
+                            <tr class="line"></tr>
+                            <tr class="info">
+                                <td>Date:</td>
+                                <td>Author:</td>
+                            </tr>
+
+                            <tr class="info">
+                                <td>{{ post.createdDate.date }}</td>
+                                <td>{{ post.author}}</td>
+                            </tr>
+                            <tr class="line bottom"></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} {% block stylesheets %}
+    <style>
+        body {
+            background: #F5F5F5;
+            font: 18px/1.5 sans-serif;
+
+        }
+        .title {
+            font-size: 35px;
+            font-style: italic;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .btn_del{
+            background: #F75979 none repeat scroll 0% 0%;
+            color: #FFF;
+            border: 1px solid #F75979;
+            border-radius: 5px;
+            padding: 5px 10px;
+            text-align: center;
+            width: 120px;
+            line-height: 35px;
+        }
+        a.btn_del, a:hover.btn_del,a:active.btn_del {
+            text-decoration: none;
+            color:#fff;
+        }
+        .line {
+            display: block;
+            width: 105%;
+            border-color: #ccc;
+            border-bottom-style: inset;
+        }
+        .bottom{
+            margin-bottom:40px;
+        }
+
+        .post_conent {
+            text-align: left;
+        }
+        .admin{
+            padding-left:15px;
+            padding-right: 15px;
+        }
+        .active{
+            text-decoration: underline!important;
+        }
+        .info {
+            color: #ccc;
+            font-size: 12px;
+        }
+        .login{
+            text-align: right;
+        }
+        h1,
+        h2 {
+            line-height: 1.2;
+            margin: 0 0 .5em;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        h2 {
+            font-size: 21px;
+            margin-bottom: 1em;
+        }
+
+        p {
+            margin: 0 0 1em 0;
+        }
+
+        a:link.link, a:hover.link, a:active.link, a:visited.link{
+            color:#fff!important;
+            text-decoration: none;
+        }
+        code {
+            background: #F5F5F5;
+            max-width: 100px;
+            padding: 2px 6px;
+            word-wrap: break-word;
+        }
+
+        #wrapper {
+            background: #FFF;
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+        }
+
+        #container {
+            padding: 2em;
+        }
+
+        #welcome h1 span {
+            display: block;
+            font-size: 75%;
+        ;
+        }
+
+
+        @media (min-width: 768px) {
+            #wrapper {
+                width: 80%;
+                margin: 2em auto;
+            }
+            #icon-book {
+                display: inline-block;
+            }
+            #status a,
+            #next a {
+                display: block;
+            }
+            @-webkit-keyframes fade-in {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+            @keyframes fade-in {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+
+        }
+    </style>
+{% endblock %}

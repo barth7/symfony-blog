@@ -26,7 +26,7 @@ class BlogController extends Controller
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($query, $request->query->get('page', $page), 10);
         $pagination->setUsedRoute('_admin_index_paginated');
-        var_dump('admin!');
+        //var_dump('admin!');
         return $this->render('blog/showPosts.html.twig', array(
             'posts' => $pagination,
             'delete_option' => true
@@ -52,6 +52,7 @@ class BlogController extends Controller
             ->getForm();
 
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();

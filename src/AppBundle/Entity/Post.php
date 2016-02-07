@@ -3,13 +3,20 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 
+use Symfony\Component\Validator\Constraints as Assert;
 class Post
 {
 
     private $id;
-
+    /**
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 100,
+     *      minMessage = "Your post title must be at least {{ limit }} characters long",
+     *      maxMessage = "Your post title cannot be longer than {{ limit }} characters"
+     * )
+     */
     private $title;
 
     private $slug;
@@ -20,7 +27,14 @@ class Post
      * )
      */
     private $content;
-
+    /**
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your name cannot be longer than {{ limit }} characters"
+     * )
+     */
     private $author;
 
     private $createdDate;
