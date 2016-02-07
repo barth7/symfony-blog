@@ -16,7 +16,7 @@ class BlogController extends Controller
     public function adminAction(Request $request, $page)
     {
         
-        $posts = $this->getDoctrine()->getEntityManager();
+        $posts = $this->getDoctrine()->getManager();
         $query = $posts->createQuery('
                 SELECT p
                 FROM AppBundle:Post p
@@ -36,7 +36,7 @@ class BlogController extends Controller
         if (!$id) {
             throw $this->createNotFoundException('No post found');
         }
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->remove($id);
         $em->flush();
         return $this->redirectToRoute('_admin_vire');

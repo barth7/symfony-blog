@@ -7,7 +7,7 @@ _blog_index_paginated:
     defaults: { _controller: AppBundle:Blog:index, page: 1 }
 
 _blog_single_post:
-    path:   /slug={slug}
+    path:   /slug/{slug}
     defaults: { _controller: AppBundle:Blog:findByTitle, slug: 1 }
     
 _admin_vire:

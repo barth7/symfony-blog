@@ -13,7 +13,7 @@ class BlogController extends Controller
     public function indexAction(Request $request, $page)
     {
         
-        $posts = $this->getDoctrine()->getEntityManager();
+        $posts = $this->getDoctrine()->getManager();
         $query = $posts->createQuery('
                 SELECT p
                 FROM AppBundle:Post p
@@ -29,7 +29,7 @@ class BlogController extends Controller
         ));
     }
     public function findByTitleAction($slug){
-        $posts = $this->getDoctrine()->getEntityManager();
+        $posts = $this->getDoctrine()->getManager();
         $query = $posts->createQuery('
                 SELECT p
                 FROM AppBundle:Post p
