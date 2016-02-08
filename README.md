@@ -1,33 +1,28 @@
-This is an example of a simple symfony blog.
-
-==========
-
-Features:
-========
+<h2>This is an example of a simple symfony blog.</h2>
+======
+<h2>Features:</h2>
 <ul>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Listing posts in chronological order</li>
+<li>Pagination (10 posts on each page) -> KnpPaginatorBundle</li>
+<li>Possibility to login/logout (Simple Authentication (no databasa, in_memory))</li>
+<li>After login user can delete the post or add new post(at least 100 characters)</li>
+<li>Possibility to search posts by slug (title) in url</li>
 </ul>
-Listing posts in chronological order
-Pagination (10 posts on each page) -> KnpPaginatorBundle
-Possibility to login/logout (Simple Authentication (no databasa, in_memory))
-After login user can delete the post or add new post(at least 100 characters)
-Possibility to search posts by slug (title) in url
 
-To Do:
-Users stored in db
-Option to edit posts
-Different users role
-Better slug search
-Comments section
-More user-friendly layout
+<h2>To Do:</h2>
+<ul>
+<li>Users stored in db</li>
+<li>Option to edit posts</li>
+<li>Different users role</li>
+<li>Better slug search</li>
+<li>Comments section</li>
+<li>More user-friendly layout</li>
+</ul>
 
+<h2>Requirements:</h2>
+<ul>
+<li>PHP 5.3 or higher</li>
+<li>PDO-SQLite PHP extension enabled</li>
+<li>The usual Symfony application requirements</li>
+</ul>
 
-Requirements
-PHP 5.3 or higher;
-PDO-SQLite PHP extension enabled;
-and the usual Symfony application requirements.
