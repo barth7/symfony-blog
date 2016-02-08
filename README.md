@@ -1,11 +1,20 @@
-Simple Example of Symfony Blog
+This is an example of a simple symfony blog.
 
-======
+==========
 
 Features:
+========
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
 Listing posts in chronological order
 Pagination (10 posts on each page) -> KnpPaginatorBundle
-Possibility to login/logout (Users stored security config)
+Possibility to login/logout (Simple Authentication (no databasa, in_memory))
 After login user can delete the post or add new post(at least 100 characters)
 Possibility to search posts by slug (title) in url
 
