@@ -59,14 +59,38 @@ class BlogController extends Controller
             $NewPost->setSlug(preg_replace(
                 '/[^a-z0-9]/', '-', strtolower(trim(strip_tags($NewPost->getTitle())))));
             var_dump($data);
-            $this->get('app.newpost')->newPost($data);
+            $newPostId = $this->get('app.newpost')->newPost($data);
 
-            return $this->redirectToRoute('_welcome');
+            return $this->redirectToRoute('_admin_show_post',['id' => $newPostId]);
         }
 
         return $this->render('blog/newPost.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+    
+        public function showAction($id){
+        $posts = $this->getDoctrine()->getManager();
+        $query = $posts->createQuery('
+                SELECT p
+                FROM AppBundle:Post p
+                WHERE p.id = :id
+            ');
+        $query->setParameters(array(
+            'id' => $id,
+        ));
+        $Post = $query->getResult();
+
+
+        if(!empty($Post)){
+            return $this->render('blog/showPost.html.twig', array(
+                'post' => $Post[0],
+                'delete_option' => false
+            ));
+        }else{
+            return $this->redirectToRoute('_welcome');
+        }
+
     }
 
 }

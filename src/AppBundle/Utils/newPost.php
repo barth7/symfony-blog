@@ -27,7 +27,7 @@ class newPost
 
         $this->em->persist($newPost);
         $this->em->flush();
-        return new Response('Created New Post');
+        return $newPost->getId();;
     }
 
 

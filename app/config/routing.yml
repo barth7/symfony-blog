@@ -22,6 +22,10 @@ _admin_delete_post:
     path:   /admin/delete={id}
     defaults: { _controller: AppBundle:Admin/Blog:delete, id: 1 }
 
+_admin_show_post:
+    path:   /admin/show={id}
+    defaults: { _controller: AppBundle:Admin/Blog:show, id: 1 }
+
 _admin_add_post:
      path:   /admin/new
      defaults: { _controller: AppBundle:Admin/Blog:newPost}
