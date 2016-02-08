@@ -1,5 +1,4 @@
 <h2>This is an example of a simple symfony blog.</h2>
-======
 <h2>Features:</h2>
 <ul>
 <li>Listing posts in chronological order</li>
